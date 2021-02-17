@@ -1,4 +1,4 @@
-package example.micronaut;
+package com.vobject.flutter.widgets.explorer;
 
 import io.micronaut.runtime.Micronaut;
 

@@ -1,4 +1,4 @@
-package example.micronaut;
+package com.vobject.flutter.widgets.explorer;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import io.micronaut.core.annotation.Introspected;
