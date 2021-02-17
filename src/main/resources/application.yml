@@ -1,13 +1,22 @@
 micronaut:
   application:
     name: flutter-widgets-explorer
-   
+jackson:
+  bean-introspection-module: true
+---
 datasources:
     default:
         url: ${db_url:`jdbc:mysql://localhost:3306/test`}
         username: ${db_user:root}
         password: ${db_password:`!qaz@wsx`}
         driverClassName: ${db_driver:com.mysql.cj.jdbc.Driver}
-        dialect: MYSQL
-
-jpa.default.properties.hibernate.hbm2ddl.auto: update
+jpa:
+  default:
+    properties:
+      hibernate:
+        bytecode:
+          provider: none
+        hbm2ddl:
+          auto: update
+        show_sql: true
+        dialect: org.hibernate.dialect.MySQL8Dialect
