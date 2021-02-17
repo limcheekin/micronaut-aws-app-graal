@@ -9,7 +9,7 @@ datasources:
         url: ${db_url:`jdbc:mysql://localhost:3306/test`}
         username: ${db_user:root}
         password: ${db_password:`!qaz@wsx`}
-        driverClassName: ${db_driver:com.mysql.cj.jdbc.Driver}
+        driverClassName: ${db_driver:org.mariadb.jdbc.Driver}
 jpa:
   default:
     properties:
@@ -19,4 +19,3 @@ jpa:
         hbm2ddl:
           auto: update
         show_sql: true
-        dialect: org.hibernate.dialect.MySQL8Dialect
