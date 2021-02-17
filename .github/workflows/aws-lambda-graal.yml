@@ -1,0 +1,36 @@
+# Reference: https://github.com/marketplace/actions/aws-lambda-deploy 
+
+name: Deploy AWS Lambda Custom Runtime with Docker Build
+
+on:
+  push:
+    branches: [ 2.3.x ]
+  pull_request:
+    branches: [ 2.3.x ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Setup Java JDK
+      uses: actions/setup-java@v1.4.3
+      with:
+        java-version: '8.0.282' # The JDK version to make available on the path.
+        java-package: jdk # (jre, jdk, or jdk+fx) - defaults to jdk
+        architecture: x64 # (x64 or x86) - defaults to x64
+    - name: Grant execute permission for gradlew
+      run: chmod +x gradlew
+    - name: Run gradlew docker build
+      run: ./gradlew buildNativeLambda -Pmicronaut.runtime=lambda
+    - name: Rename to function.zip
+      run: mv build/libs/mn-aws-app-graal-0.1-lambda.zip build/function.zip
+    - name: Deploy to AWS Lambda
+      env:
+        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        AWS_DEFAULT_REGION: ${{ secrets.AWS_REGION }}
+        AWS_DEFAULT_OUTPUT: json
+      run: aws lambda update-function-code --function-name micronaut-person-graal --zip-file fileb://build/function.zip
