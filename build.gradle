@@ -48,6 +48,8 @@ dependencies {
 
     runtimeOnly("ch.qos.logback:logback-classic")
     runtimeOnly("org.mariadb.jdbc:mariadb-java-client")
+
+    testRuntimeOnly("com.h2database:h2")
 }
 
 application {
