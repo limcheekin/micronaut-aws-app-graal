@@ -6,8 +6,11 @@ micronaut:
     endpoints:
         login:
           enabled: true
-        oauth:
+        logout:
           enabled: true
+          get-allowed: true
+        #oauth:
+        #  enabled: false
     token:
       jwt:
         generator:
@@ -19,15 +22,23 @@ micronaut:
           secret:
             generator:
               secret: '"${JWT_GENERATOR_SIGNATURE_SECRET:eefe82f8-7ca6-11ea-bc55-0242ac130003}"'
+    oauth2:
+      clients:
+        google:
+          client-id: '${OAUTH_CLIENT_ID}'
+          client-secret: '${OAUTH_CLIENT_SECRET}'
+          openid:
+            issuer: 'https://accounts.google.com'
+
 ---
 jackson:
   bean-introspection-module: true
 ---
 datasources:
     default:
-        url: ${db_url:`jdbc:mysql://localhost:3306/test`}
-        username: ${db_user:root}
-        password: ${db_password:`!qaz@wsx`}
+        url: ${db_url:`jdbc:mysql://localhost:3306/qprofit`}
+        username: ${db_user:qprofit}
+        password: ${db_password:`!qaz2WSX`}
         driverClassName: ${db_driver:org.mariadb.jdbc.Driver}
 jpa:
   default:

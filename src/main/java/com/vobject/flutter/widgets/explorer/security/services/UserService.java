@@ -29,14 +29,17 @@ public class UserService {
     }
 
     public Optional<UserDto> findUser(String username) {
+        LOG.info("username {}", username);
         return usersRepository.findByUsername(username).map(userMapper::toDto);
     }
 
     public Optional<UserDto> findByRefreshToken(String refreshToken) {
+        LOG.info("refreshToken {}", refreshToken);
         return usersRepository.findByToken(refreshToken).map(userMapper::toDto);
     }
 
     public void saveRefreshToken(String username, String refreshToken) {
+        LOG.info("username {}, refreshToken {}", username, refreshToken);
         usersRepository.findByUsername(username).ifPresent(
                 user -> {
                     user.setToken(refreshToken);
