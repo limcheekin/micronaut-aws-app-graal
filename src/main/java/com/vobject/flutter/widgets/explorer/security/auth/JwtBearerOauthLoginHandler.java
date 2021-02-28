@@ -30,27 +30,30 @@ import org.slf4j.LoggerFactory;
 /**
  * @author limcheekin@vobject.com
  */
-@Requires(property = SecurityConfigurationProperties.PREFIX + ".authentication", value = "bearer")
+//@Requires(property = SecurityConfigurationProperties.PREFIX + ".authentication", value = "bearer")
 @Singleton
 public class JwtBearerOauthLoginHandler implements RedirectingLoginHandler {
     private static final Logger LOG = LoggerFactory.getLogger(JwtBearerOauthLoginHandler.class);
-    protected final String loginFailure;
+    /*protected final String loginFailure;
     protected final String loginSuccess;
     protected final String refresh;
     protected final AccessRefreshTokenGenerator accessRefreshTokenGenerator;
+    */
     //protected final PriorToLoginPersistence priorToLoginPersistence;
 
     //@Inject
     public JwtBearerOauthLoginHandler(RedirectConfiguration redirectConfiguration,
         AccessRefreshTokenGenerator accessRefreshTokenGenerator) {
+            /*
         this.loginFailure = redirectConfiguration.getLoginFailure();
         this.loginSuccess = redirectConfiguration.getLoginSuccess();
         RefreshRedirectConfiguration refreshConfig = redirectConfiguration.getRefresh();
         this.refresh = refreshConfig.isEnabled() ? refreshConfig.getUrl() : null;
         this.accessRefreshTokenGenerator = accessRefreshTokenGenerator;
+        */
         //this.priorToLoginPersistence = priorToLoginPersistence;
 
-        LOG.info("loginSuccess {}, loginFailure {}, refresh {}", loginSuccess, loginFailure, refresh);
+        //LOG.info("loginSuccess {}, loginFailure {}, refresh {}", loginSuccess, loginFailure, refresh);
     }    
 
     @Override
@@ -58,7 +61,7 @@ public class JwtBearerOauthLoginHandler implements RedirectingLoginHandler {
         LOG.info("userDetails.getUsername() {}, userDetails.getAttributes() {}", userDetails.getUsername(), userDetails.getAttributes("roles", "username"));
         LOG.info("request {}", request);
         //try {
-            MutableHttpResponse<?> response = HttpResponse.status(HttpStatus.SEE_OTHER);
+            //MutableHttpResponse<?> response = HttpResponse.status(HttpStatus.SEE_OTHER);
             /*ThrowingSupplier<URI, URISyntaxException> uriSupplier = () -> new URI(loginSuccess);
             if (priorToLoginPersistence != null) {
                 Optional<URI> originalUri = priorToLoginPersistence.getOriginalUri(request, response);
@@ -69,20 +72,21 @@ public class JwtBearerOauthLoginHandler implements RedirectingLoginHandler {
 
             response.getHeaders().location(uriSupplier.get());
             */
-            AccessRefreshToken accessRefreshToken = accessRefreshTokenGenerator.generate(userDetails)
+            /*AccessRefreshToken accessRefreshToken = accessRefreshTokenGenerator.generate(userDetails)
             .orElseThrow(() -> new OauthErrorResponseException(ObtainingAuthorizationErrorCode.SERVER_ERROR, "Cannot obtain an access token", null));
             response.body(accessRefreshToken);
             
-            return response;
+            return response;*/
         //} catch (URISyntaxException e) {
         //    return HttpResponse.serverError();
         //}
+        return HttpResponse.ok();
     }
 
     @Override
     public MutableHttpResponse<?> loginRefresh(UserDetails userDetails, String refreshToken, HttpRequest<?> request) {
         LOG.info("userDetails {}, refreshToken {}, request {}", userDetails, refreshToken, request);
-        MutableHttpResponse<?> response;
+        /*MutableHttpResponse<?> response;
         try {
             if (refresh != null) {
                 response = HttpResponse.seeOther(new URI(refresh)); 
@@ -95,18 +99,20 @@ public class JwtBearerOauthLoginHandler implements RedirectingLoginHandler {
             return response;
         } catch (URISyntaxException e) {
             return HttpResponse.serverError();
-        }
+        }*/
+        return HttpResponse.ok();
     }
 
     @Override
     public MutableHttpResponse<?> loginFailed(AuthenticationResponse authenticationResponse, HttpRequest<?> request) {
         LOG.info("authenticationResponse, request {}", authenticationResponse, request);
-        try {
+        /*try {
             URI location = new URI(loginFailure);
             return HttpResponse.seeOther(location);
         } catch (URISyntaxException e) {
             return HttpResponse.serverError();
-        }
+        }*/
+        return HttpResponse.ok();
     }
     
 }
