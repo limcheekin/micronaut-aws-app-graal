@@ -4,8 +4,6 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.Optional;
 
-import javax.annotation.Nullable;
-import javax.inject.Inject;
 import javax.inject.Singleton;
 
 import io.micronaut.security.handlers.RedirectingLoginHandler;
@@ -40,18 +38,17 @@ public class JwtBearerOauthLoginHandler implements RedirectingLoginHandler {
     protected final String loginSuccess;
     protected final String refresh;
     protected final AccessRefreshTokenGenerator accessRefreshTokenGenerator;
-    protected final PriorToLoginPersistence priorToLoginPersistence;
+    //protected final PriorToLoginPersistence priorToLoginPersistence;
 
-    @Inject
+    //@Inject
     public JwtBearerOauthLoginHandler(RedirectConfiguration redirectConfiguration,
-        AccessRefreshTokenGenerator accessRefreshTokenGenerator,
-        @Nullable PriorToLoginPersistence priorToLoginPersistence) {
+        AccessRefreshTokenGenerator accessRefreshTokenGenerator) {
         this.loginFailure = redirectConfiguration.getLoginFailure();
         this.loginSuccess = redirectConfiguration.getLoginSuccess();
         RefreshRedirectConfiguration refreshConfig = redirectConfiguration.getRefresh();
         this.refresh = refreshConfig.isEnabled() ? refreshConfig.getUrl() : null;
         this.accessRefreshTokenGenerator = accessRefreshTokenGenerator;
-        this.priorToLoginPersistence = priorToLoginPersistence;
+        //this.priorToLoginPersistence = priorToLoginPersistence;
 
         LOG.info("loginSuccess {}, loginFailure {}, refresh {}", loginSuccess, loginFailure, refresh);
     }    
