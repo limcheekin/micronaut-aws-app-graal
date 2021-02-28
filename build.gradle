@@ -19,6 +19,7 @@ micronaut {
     processing {
         incremental(true)
         annotations("com.vobject.flutter.widgets.explorer.*")
+        annotations("com.vobject.flutter.widgets.explorer.security.auth.*")
     }
 }
 
