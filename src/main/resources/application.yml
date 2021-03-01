@@ -9,8 +9,8 @@ micronaut:
         logout:
           enabled: true
           get-allowed: true
-        #oauth:
-        #  enabled: false
+        oauth:
+          enabled: true
     token:
       jwt:
         generator:
@@ -22,13 +22,13 @@ micronaut:
           secret:
             generator:
               secret: '"${JWT_GENERATOR_SIGNATURE_SECRET:eefe82f8-7ca6-11ea-bc55-0242ac130003}"'
-    oauth2:
-      clients:
-        google:
-          client-id: '${OAUTH_CLIENT_ID}'
-          client-secret: '${OAUTH_CLIENT_SECRET}'
-          openid:
-            issuer: 'https://accounts.google.com'
+#    oauth2:
+#      clients:
+#        google:
+#          client-id: '${OAUTH_CLIENT_ID}'
+#          client-secret: '${OAUTH_CLIENT_SECRET}'
+#          openid:
+#            issuer: 'https://accounts.google.com'
 
 ---
 jackson:
