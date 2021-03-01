@@ -1,6 +1,9 @@
 package com.vobject.flutter.widgets.explorer.security.controllers;
 
 import java.util.Optional;
+
+import javax.validation.Valid;
+
 import io.reactivex.Single;
 
 import io.micronaut.http.HttpResponse;
@@ -24,7 +27,7 @@ public class SignUpController {
     }
 
     @Post
-    public Single<HttpResponse<UserDto>> registerUser(UserDto userDto) {
+    public Single<HttpResponse<UserDto>> registerUser(@Valid UserDto userDto) {
 
         Optional<UserDto> existingUser = userService.findUser(userDto.getUsername());
 
