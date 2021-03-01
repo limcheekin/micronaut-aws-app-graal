@@ -42,11 +42,11 @@ public class JwtBearerOauthLoginHandler implements RedirectingLoginHandler {
     */
     //protected final PriorToLoginPersistence priorToLoginPersistence;
 
-    @Inject
-    public JwtBearerOauthLoginHandler(RedirectConfiguration redirectConfiguration,
-        AccessRefreshTokenGenerator accessRefreshTokenGenerator) {
-        LOG.info("redirectConfiguration {}, accessRefreshTokenGenerator {}", 
-            redirectConfiguration, accessRefreshTokenGenerator);     
+    //@Inject
+    //public JwtBearerOauthLoginHandler(RedirectConfiguration redirectConfiguration,
+      //  AccessRefreshTokenGenerator accessRefreshTokenGenerator) {
+       // LOG.info("redirectConfiguration {}, accessRefreshTokenGenerator {}", 
+        //    redirectConfiguration, accessRefreshTokenGenerator);     
             /*
         this.loginFailure = redirectConfiguration.getLoginFailure();
         this.loginSuccess = redirectConfiguration.getLoginSuccess();
@@ -57,7 +57,7 @@ public class JwtBearerOauthLoginHandler implements RedirectingLoginHandler {
         //this.priorToLoginPersistence = priorToLoginPersistence;
 
         //LOG.info("loginSuccess {}, loginFailure {}, refresh {}", loginSuccess, loginFailure, refresh);
-    }    
+    //}    
 
     @Override
     public MutableHttpResponse<?> loginSuccess(UserDetails userDetails, HttpRequest<?> request) {
