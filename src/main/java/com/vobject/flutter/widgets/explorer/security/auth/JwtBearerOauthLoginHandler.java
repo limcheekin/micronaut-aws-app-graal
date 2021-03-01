@@ -4,6 +4,7 @@ package com.vobject.flutter.widgets.explorer.security.auth;
 //import java.net.URISyntaxException;
 //import java.util.Optional;
 
+import javax.inject.Inject;
 import javax.inject.Singleton;
 
 import io.micronaut.security.handlers.RedirectingLoginHandler;
@@ -41,9 +42,11 @@ public class JwtBearerOauthLoginHandler implements RedirectingLoginHandler {
     */
     //protected final PriorToLoginPersistence priorToLoginPersistence;
 
-    //@Inject
+    @Inject
     public JwtBearerOauthLoginHandler(RedirectConfiguration redirectConfiguration,
         AccessRefreshTokenGenerator accessRefreshTokenGenerator) {
+        LOG.info("redirectConfiguration {}, accessRefreshTokenGenerator {}", 
+            redirectConfiguration, accessRefreshTokenGenerator);     
             /*
         this.loginFailure = redirectConfiguration.getLoginFailure();
         this.loginSuccess = redirectConfiguration.getLoginSuccess();
