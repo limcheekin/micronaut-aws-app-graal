@@ -33,5 +33,4 @@ public class SignUpController {
                 .orElse(HttpResponse.ok(userService.createUser(userDto)))
         );
     }
-
 }
