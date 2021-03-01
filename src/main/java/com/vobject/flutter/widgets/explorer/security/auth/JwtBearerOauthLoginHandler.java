@@ -35,6 +35,9 @@ import org.slf4j.LoggerFactory;
 @Singleton
 public class JwtBearerOauthLoginHandler implements RedirectingLoginHandler {
     private static final Logger LOG = LoggerFactory.getLogger(JwtBearerOauthLoginHandler.class);
+    
+    public JwtBearerOauthLoginHandler() {}
+    
     /*protected final String loginFailure;
     protected final String loginSuccess;
     protected final String refresh;
