@@ -13,7 +13,7 @@ import com.vobject.flutter.widgets.explorer.security.services.UserService;
 import com.vobject.flutter.widgets.explorer.security.dtos.UserDto;
 
 
-import static io.micronaut.security.authentication.AuthenticationFailureReason.PASSWORD_EXPIRED;
+import static io.micronaut.security.authentication.AuthenticationFailureReason.CREDENTIALS_DO_NOT_MATCH;
 import static io.micronaut.security.authentication.AuthenticationFailureReason.USER_NOT_FOUND;
 import static java.util.Collections.singletonList;
 
@@ -39,7 +39,7 @@ public class BasicAuthProvider implements AuthenticationProvider {
                     if (user.getPassword().equals(password)) {
                         return new UserDetails(username, singletonList(user.getRole()));
                     }
-                    return new AuthenticationFailed(PASSWORD_EXPIRED);
+                    return new AuthenticationFailed(CREDENTIALS_DO_NOT_MATCH);
                 })
                         .orElse(new AuthenticationFailed(USER_NOT_FOUND))
         );

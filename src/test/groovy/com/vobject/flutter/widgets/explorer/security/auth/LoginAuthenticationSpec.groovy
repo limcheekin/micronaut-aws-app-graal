@@ -69,7 +69,7 @@ class LoginAuthenticationSpec extends Specification {
         !response
         HttpClientResponseException e = thrown(HttpClientResponseException)
         e.status == HttpStatus.UNAUTHORIZED
-        e.message == 'Password Expired'
+        e.message == 'Credentials Do Not Match'
     }
 
     def "Login with an existing user correctly"() {
